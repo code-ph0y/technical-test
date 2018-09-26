@@ -47,17 +47,22 @@ class AgencyController extends AbstractController
         $serializer = SerializerBuilder::create()->build();
 
         // Find agency with id.
-        $agencies = $this->get('doctrine')->getRepository(Agency::class)->findById($id);
+        $agency = $this->get('doctrine')->getRepository(Agency::class)->findById($id);
 
-        if (count($agencies) == 0) {
+        if (count($agency) == 0) {
             // Create message if no agencies are found.
             $json = array('code' => '500', 'message' => 'No Agencies Found');
 
             return new JsonResponse($json);
         }
 
+        $json = array(
+            'code'     => 200,
+            'results'  => $agency
+        );
+
         // Convert to json format
-        $jsonAgencies = $serializer->serialize($agencies, 'json');
+        $jsonAgencies = $serializer->serialize($json, 'json');
 
         // Create json reponse with raw json
         return new JsonResponse($jsonAgencies, 200, [], true);

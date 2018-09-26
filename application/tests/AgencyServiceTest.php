@@ -12,7 +12,7 @@ class AgencyServiceTest extends WebTestCase
             Update the services an agency offers
      */
 
-    protected $baseurl = 'http://127.0.0.1:8009/';
+    protected $baseurl   = 'http://127.0.0.1:8009/';
     protected $api_token = '946bdc1a-f91c-497b-b4a8-b3b35b2242c8';
 
     public function testAgencyServiceViewAllById()
